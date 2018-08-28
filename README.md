@@ -22,7 +22,7 @@ https://hyperledger.github.io/composer/latest/reference/cto_language.html
 
 3. start the network , and create business network card for roles
 
-    `composer network start --networkName baggage-network --networkVersion 0.0.1.bna --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card`
+    `composer network start --networkName baggage-network --networkVersion 0.0.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card`
 
     then import the card with 
 

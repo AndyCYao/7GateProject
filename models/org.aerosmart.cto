@@ -24,12 +24,12 @@ participant Airport identified by airportId {
 }
 
 participant Passenger identified by passengerId {
-  --> Baggage[] baggages 
+  --> Baggage[] ownedBaggages 
   o String passengerId
 }
 
 asset Baggage identified by baggageId {
-  --> Passenger passenger
+  --> Passenger owner
   o String baggageId
   o String description
   o String location
@@ -45,4 +45,9 @@ event ScannedBaggageEvent {
   --> Baggage baggage
   o String newLocation
   o DateTime dateTime
+}
+
+transaction NewBaggageCreated {
+  o String passengerId
+  o Baggage[] baggages
 }

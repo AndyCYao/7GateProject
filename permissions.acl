@@ -27,7 +27,7 @@ rule OnlyAirportCanSubmitTransactions {
     description: "Allow airpot to submit transactions"
     participant: "org.aerosmart.baggageTracker.Airport"
     operation: CREATE
-    resource: "org.aerosmart.baggageTracker.ScannedLuggage"
+    resource: "org.aerosmart.baggageTracker.ScannedBaggage"
     action: ALLOW
 }
 
@@ -35,7 +35,7 @@ rule OwnerHasFullAccessToTheirAssets {
     description: "Allow all participants full access to their assets"
     participant(p): "org.aerosmart.baggageTracker.Passenger"
     operation: ALL
-    resource(r): "org.aerosmart.baggageTracker.Luggage"
+    resource(r): "org.aerosmart.baggageTracker.Baggage"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
 }
