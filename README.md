@@ -14,34 +14,22 @@ https://hyperledger.github.io/composer/latest/reference/cto_language.html
 
 ## Run Step
 1. make sure your hyperledger fabric is installed, then run 
-    `./startFabric.sh` to start it.
-    when you make a change in the model or logic schema you can update the business network archive `bna` file with
-`composer archive create --sourceType dir --sourceName . -a baggage-network@Y.Y.Y.bna` where `Y.Y.Y` is the version number in `package.json`
+    `./fabricUtil.sh start` to start it.
 
 2. Install the business network with
 
-    `composer network install --card PeerAdmin@hlfv1 --archiveFile baggage-network@0.0.2.bna`
-
-    or if the network is an upgrade, you can call 
-
-      `composer network upgrade --networkName baggage-network --networkVersion 0.0.3-deploy.0 -c PeerAdmin@hlfv1`
+    `composer network install --card PeerAdmin@hlfv1 --archiveFile baggage-network@0.0.1.bna`
 
 3. start the network , and create business network card for roles
 
-    `composer network start --networkName baggage-network --networkVersion 0.0.3-deploy.0 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card`
+    `composer network start --networkName baggage-network --networkVersion 0.0.1.bna --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card`
 
     then import the card with 
 
     `composer card import --file networkadmin.card`
 
-    `composer card create --file BER_aID.card --businessNetworkName baggage-network --connectionProfileFile connection.json --user BER --enrollSecret supersecret`
-
-
 4. run hyperledger composer playground with 
-
-    docker run --name composer-playground --publish 8080:8080 hyperledger/composer-playground
-
-
+    `docker run --name composer-playground --publish 8080:8080 hyperledger/composer-playground`
 5. open up your browser at localhost:8080, once the composer playground is loaded, select `Deploy a new business network` -> `Drop here or upload or browse` to import the baggage-network.bna.
 
 6. can create a composer rest server with 
@@ -61,10 +49,20 @@ https://hyperledger.github.io/composer/latest/reference/cto_language.html
     
     then the rest api should be listening on http://localhost:3000
 
-7. Create an angular app template with
+7. Create an angular app template with (OPTIONAL)
+
     `yo hyperledger-composer:angular` , then navigate to the angular app folder, and `npm start`
 
-8. follow  https://hyperledger.github.io/composer/latest/tutorials/developer-tutorial to see more
+8. Miscellaenous 
+
+    when you make a change in the model or logic schema you can update the business network archive `bna` file with
+    `composer archive create --sourceType dir --sourceName . -a baggage-network@Y.Y.Y.bna` where `Y.Y.Y` is the version number in `package.json`
+    or if the network is an upgrade, you can call 
+    `composer network upgrade --networkName baggage-network --networkVersion 0.0.3-deploy.0 -c PeerAdmin@hlfv1`
+
+    create a card with 
+        `composer card create --file BER_aID.card --businessNetworkName baggage-network --connectionProfileFile connection.json --user BER --enrollSecret supersecret`
+
 
 ## Network components
 
