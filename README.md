@@ -20,15 +20,21 @@ https://hyperledger.github.io/composer/latest/reference/cto_language.html
 
 2. Install the business network with
 
-    composer network install --card PeerAdmin@hlfv1 --archiveFile tutorial-network@0.0.1.bna
+    `composer network install --card PeerAdmin@hlfv1 --archiveFile baggage-network@0.0.2.bna`
 
-3. start the network with 
+    or if the network is an upgrade, you can call 
 
-    composer network start --networkName tutorial-network --networkVersion 0.0.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+      `composer network upgrade --networkName baggage-network --networkVersion 0.0.3-deploy.0 -c PeerAdmin@hlfv1`
+
+3. start the network , and create business network card for roles
+
+    `composer network start --networkName baggage-network --networkVersion 0.0.3-deploy.0 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card`
 
     then import the card with 
 
     `composer card import --file networkadmin.card`
+
+    `composer card create --file BER_aID.card --businessNetworkName baggage-network --connectionProfileFile connection.json --user BER --enrollSecret supersecret`
 
 
 4. run hyperledger composer playground with 
@@ -41,6 +47,8 @@ https://hyperledger.github.io/composer/latest/reference/cto_language.html
 6. can create a composer rest server with 
     `composer-rest-server`
     
+    or if you know the settings already just `composer-rest-server -c admin@baggage-network -n never` 
+
     card name - `admin@baggage-network`
     
     never use name space

@@ -3,7 +3,7 @@
     "composer": "^0.20.0"
   },
   "name": "baggage-network",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Baggage tracking network for airport and passenger",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/baggage-network.bna",
