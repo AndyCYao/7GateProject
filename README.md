@@ -18,19 +18,19 @@ https://hyperledger.github.io/composer/latest/reference/cto_language.html
 
 2. Install the business network with
 
-    `composer network install --card PeerAdmin@hlfv1 --archiveFile baggage-network@0.0.1.bna`
+    `composer network install --card PeerAdmin@hlfv1 --archiveFile baggage-network@0.0.5.bna`
 
 3. start the network , and create business network card for roles
 
-    `composer network start --networkName baggage-network --networkVersion 0.0.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card`
+    `composer network start --networkName baggage-network --networkVersion 0.0.5 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card`
 
     then import the card with 
 
     `composer card import --file networkadmin.card`
 
-4. run hyperledger composer playground with 
+4. (optional) run hyperledger composer playground with 
     `docker run --name composer-playground --publish 8080:8080 hyperledger/composer-playground`
-5. open up your browser at localhost:8080, once the composer playground is loaded, select `Deploy a new business network` -> `Drop here or upload or browse` to import the baggage-network.bna.
+    open up your browser at localhost:8080, once the composer playground is loaded, select `Deploy a new business network` -> `Drop here or upload or browse` to import the baggage-network.bna.
 
 6. can create a composer rest server with 
     `composer-rest-server`
@@ -55,10 +55,17 @@ https://hyperledger.github.io/composer/latest/reference/cto_language.html
 
 8. Miscellaenous 
 
-    when you make a change in the model or logic schema you can update the business network archive `bna` file with
-    `composer archive create --sourceType dir --sourceName . -a baggage-network@Y.Y.Y.bna` where `Y.Y.Y` is the version number in `package.json`
-    or if the network is an upgrade, you can call 
-    `composer network upgrade --networkName baggage-network --networkVersion 0.0.3-deploy.0 -c PeerAdmin@hlfv1`
+    when you make a change in the model or logic schema, to deploy it, you need to follow the following 
+
+    * increment the package json version in the format of 0.0.x
+        
+    * `composer archive create -t dir -n .` 
+
+    * install the new bna file composer network install -a NETWORK-FILENAME.bna -c peeradmin@hlfv1
+
+   * upgrade the business network
+    `composer network upgrade -c peeradmin@hlfv1 -n NETWORK-NAME -V NETWORK-VERSION`
+
 
     create a card with 
         `composer card create --file BER_aID.card --businessNetworkName baggage-network --connectionProfileFile connection.json --user BER --enrollSecret supersecret`

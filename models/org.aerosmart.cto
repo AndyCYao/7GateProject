@@ -33,6 +33,7 @@ asset Baggage identified by baggageId {
   o String baggageId
   o String description
   o String location
+  o DateTime dateTime
 }
 
 transaction ScannedBaggage {
