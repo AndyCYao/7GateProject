@@ -1,4 +1,4 @@
-# Baggage Tracker Hyperledge
+# AeroSmart Demo - Baggage Tracker using Hyperledger Fabric
 
 Baggage tracking network for airport and passenger
 
