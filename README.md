@@ -14,7 +14,7 @@ https://hyperledger.github.io/composer/latest/reference/cto_language.html
 
 ## Run Step
 1. make sure your hyperledger fabric is installed, then run 
-    `./fabricUtil.sh start` to start it.
+    `./fabricUtil.sh start` to start it. (and `./fabricUtil.sh stop` to stop)
 
 2. Install the business network with
 
