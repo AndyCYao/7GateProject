@@ -1,20 +1,17 @@
-# AeroSmart Demo - Baggage Tracker using Hyperledger Fabric
+# AeroSmart Demo
 
-Baggage tracking network for airport and passenger
+## Introduction
+Baggage Tracker using Hyperledger Fabric
+[![](http://img.youtube.com/vi/Fl1HGYDcRSw/0.jpg)](http://www.youtube.com/watch?v=Fl1HGYDcRSw "Team Aerosmart - Aviation Blockchain Challege")
 
-Based on the tutorial found here
+### How does blockchain improve luggage tracking?
 
-https://hyperledger.github.io/composer/latest/tutorials/developer-tutorial
-
-
-Modelling Language
-
-https://hyperledger.github.io/composer/latest/reference/cto_language.html
+### How does the blockchain network look like?
 
 
 ## Run Step
 1. make sure your hyperledger fabric is installed, then run 
-    `./fabricUtil.sh start` to start it. (and `./fabricUtil.sh stop` to stop)
+    `./fabricUtil.sh start` to start it. (and `./fabricUtil.sh stop` to stop) This launches a peer node, a certifying authority node, and an orderer node in separate docker containers.
 
 2. Install the business network with
 
@@ -28,11 +25,7 @@ https://hyperledger.github.io/composer/latest/reference/cto_language.html
 
     `composer card import --file networkadmin.card`
 
-4. (optional) run hyperledger composer playground with 
-    `docker run --name composer-playground --publish 8080:8080 hyperledger/composer-playground`
-    open up your browser at localhost:8080, once the composer playground is loaded, select `Deploy a new business network` -> `Drop here or upload or browse` to import the baggage-network.bna.
-
-6. can create a composer rest server with 
+4. can create a composer rest server with 
     `composer-rest-server`
     
     or if you know the settings already just `composer-rest-server -c admin@baggage-network -n never` 
@@ -49,11 +42,16 @@ https://hyperledger.github.io/composer/latest/reference/cto_language.html
     
     then the rest api should be listening on http://localhost:3000
 
-7. Create an angular app template with (OPTIONAL)
+5. (OPTIONAL) run hyperledger composer playground with 
+    `docker run --name composer-playground --publish 8080:8080 hyperledger/composer-playground`
+    open up your browser at localhost:8080, once the composer playground is loaded, select `Deploy a new business network` -> `Drop here or upload or browse` to import the baggage-network.bna.
+
+
+6. (OPTIONAL) Create an angular app template with
 
     `yo hyperledger-composer:angular` , then navigate to the angular app folder, and `npm start`
 
-8. Miscellaenous 
+7. Miscellaenous 
 
     when you make a change in the model or logic schema, to deploy it, you need to follow the following 
 
@@ -66,14 +64,9 @@ https://hyperledger.github.io/composer/latest/reference/cto_language.html
    * upgrade the business network
     `composer network upgrade -c peeradmin@hlfv1 -n NETWORK-NAME -V NETWORK-VERSION`
 
-
-    create a card with 
-        `composer card create --file BER_aID.card --businessNetworkName baggage-network --connectionProfileFile connection.json --user BER --enrollSecret supersecret`
-
-
 ## Network components
 
-The Hyperledger Fabric network is made up of several components:
+The Hyperledger composer network is made up of several components:
 
 - A single peer node for Org1, named peer0.org1.example.com.
         The request port is 7051.
@@ -85,10 +78,19 @@ The Hyperledger Fabric network is made up of several components:
 - A single orderer node, named orderer.example.com.
         The orderer port is 7050.
 
+## Sources
+Based on the tutorial found here
+https://hyperledger.github.io/composer/latest/tutorials/developer-tutorial
+
+Modelling Language
+https://hyperledger.github.io/composer/latest/reference/cto_language.html
 
 
 ## Other useful fabric commands
 `composer network deploy -s locationOf.bna -i Identity -s SecretKey`
+
+create a card with 
+        `composer card create --file BER_aID.card --businessNetworkName baggage-network --connectionProfileFile connection.json --user BER --enrollSecret supersecret`
 
 ## To Do List
 Add unit testing with [cucumber](https://github.com/cucumber/cucumber-js) for fabric composer
