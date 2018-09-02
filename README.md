@@ -6,7 +6,7 @@ In our demo video below, the iOS app is the baggage handler at an airport, it sc
 
 Similarly, passengers use a react web-app to retrieve the location of their baggages.
 
-[[](http://img.youtube.com/vi/Fl1HGYDcRSw/0.jpg)](http://www.youtube.com/watch?v=Fl1HGYDcRSw "Team Aerosmart - Aviation Blockchain Challege")
+[![](http://img.youtube.com/vi/Fl1HGYDcRSw/0.jpg)](http://www.youtube.com/watch?v=Fl1HGYDcRSw "Aerosmart Demo")
 
 ---
 
