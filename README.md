@@ -1,13 +1,31 @@
 # AeroSmart Demo
 
-## Introduction
 Baggage Tracker using Hyperledger Fabric
-[![](http://img.youtube.com/vi/Fl1HGYDcRSw/0.jpg)](http://www.youtube.com/watch?v=Fl1HGYDcRSw "Team Aerosmart - Aviation Blockchain Challege")
 
-### How does blockchain improve luggage tracking?
+In our demo video below, the iOS app is the baggage handler at an airport, it scans the baggage tag (QR code) of the luggage, and the location of the luggage is posted to the fabric network using the RESTful server from fabric composer
 
-### How does the blockchain network look like?
+Similarly, passengers use a react web-app to retrieve the location of their baggages.
 
+[[](http://img.youtube.com/vi/Fl1HGYDcRSw/0.jpg)](http://www.youtube.com/watch?v=Fl1HGYDcRSw "Team Aerosmart - Aviation Blockchain Challege")
+
+---
+
+### Why use blockchain?
+Blockchain is a distributed, append only record system. Each participant in the network will share the same record system. __So everyone has a single version of truth__. no more coordinating data from multiple silo-ed systems.
+
+The International Air Transport Authority (IATA) has mandated through [regulation 753](https://www.iata.org/whatwedo/ops-infra/baggage/Pages/baggage-tracking.aspx) that airlines need to have baggage tracking by Jun 2018. The four key area being 
+
+1. Passenger handover to airline
+2. Loading to the aircraft
+3. Deliver to the transfer area
+4. Return to the passenger
+
+As well, airlines need to share the information with their interline journey partners. 
+
+We believe a blockchain based implementation can solve the problems presented in IATA R753.
+
+### How does transactions get verify
+When a baggage is scanned at an airport, the airport will sign the transaction and send the transaction to an endorser. The endorser checks if the signature is correct and allows the airport to broadcast the transaction to the orderer. The orderer delivers the transaction to its peers. 
 
 ## Run Step
 1. make sure your hyperledger fabric is installed, then run 
@@ -15,11 +33,11 @@ Baggage Tracker using Hyperledger Fabric
 
 2. Install the business network with
 
-    `composer network install --card PeerAdmin@hlfv1 --archiveFile baggage-network@0.0.5.bna`
+    `composer network install --card PeerAdmin@hlfv1 --archiveFile baggage-network@0.0.6.bna`
 
 3. start the network , and create business network card for roles
 
-    `composer network start --networkName baggage-network --networkVersion 0.0.5 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card`
+    `composer network start --networkName baggage-network --networkVersion 0.0.6 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card`
 
     then import the card with 
 
